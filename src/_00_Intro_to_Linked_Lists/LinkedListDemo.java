@@ -31,6 +31,32 @@ public class LinkedListDemo {
          * String nodes.
          * 
          */
+    	String bun = "bread";
+    	String tomato = "tomato";
+    	String sauce = "sauce";
+    	String lettuce = "lettuce";
+    	String  beef = "beef";
+    	
+    	
+    	LinkedList<String> llist = new LinkedList<>();
+    	
+  
+    	llist.add(bun);
+    	llist.add(tomato);
+    	llist.add(sauce);
+    	llist.add(lettuce);
+    	llist.add(beef);
+    	llist.add(sauce);
+    	llist.add(bun);
+    	
+    	
+    	llist.print();
+    	
+
+    	
+    	
+    	
+    	
 
     }
 
