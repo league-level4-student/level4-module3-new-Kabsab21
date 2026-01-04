@@ -23,60 +23,60 @@ public class SpiesOnATrain {
      * statements.
      */
     String findIntel(LinkedList<TrainCar> train, String[] clues) {
-    
-//    for(int i =0 ; i < clues.length; i++) {
-//    	System.out.println(clues[i]);
-//    }
-//    
-//    Node<TrainCar> current = train.getHead();
-//    
-//    do {
-//    	System.out.println(current.getValue().questionPassenger());
-//    	
-//    	current = current.getNext();
-//    	
-//    }while(current.getNext() != null);
+    	String spy = null;
     	ArrayList<CharSequence> names = new ArrayList<CharSequence>();
     	ArrayList<String> evidence = new ArrayList<String>();
+    	HashMap<CharSequence, Integer> map = new HashMap<>();
     
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    
+   
     	while( train.getHead().getNext() != null) {
     		names.add(train.getHead().getValue().toString().subSequence(0, train.getHead().getValue().toString().length()));
-    		System.out.println( train.getHead().getValue().questionPassenger() );
+    
     		CharSequence rest = train.getHead().getValue().questionPassenger().subSequence(37, train.getHead().getValue().questionPassenger().length());
     		evidence.add(rest.toString());
+    		System.out.println(rest);
     		train.setHead(train.getHead().getNext());
     		
     	}
-    	
+    	for( int n = 0; n < names.size(); n++) {
+    		map.put(names.get(n), 0);
+    		
+    		}
     	for( int n = 0; n < evidence.size(); n++) {
     		for( int i = 0; i < names.size(); i++) {
-    	  //  	System.out.println(	names.get(i) );
     	    	if( evidence.get(n).contains(names.get(i))) {
-    	    		System.out.println(names.get(i));
+    	    	//	System.out.println(names.get(i));
+    	    		map.put(names.get(i), map.get(names.get(i))+1);
+    	    //	System.out.println(map);
+    	    		
     	    	}
     		}
     		
+    		
+    	}
+    	
+    	for(int i = 0; i < map.size(); i++) {
+    		
+    		map.get(names.get(i));
+    		System.out.println("name"+names.get(i)+" metnions"+map.get(names.get(i)));
+    		if( i != map.size()-1) {
+    		System.out.println("name next mentions"+names.get(i+1)+" "+map.get(names.get(i+1)));
+    		}
+    		if( map.get(names.get(i)) == 3) {
+    			spy = names.get(i).toString();
+    			System.out.println(names.get(i).toString());
+    			break;
+    		}
     	}
     
-    	
-    	
-    	
-    	
-    	
-    	
-    	
  
-    	
-        return "";
+        return spy;
 
     }
+    
+    
+    
+    
+   
 
 }
