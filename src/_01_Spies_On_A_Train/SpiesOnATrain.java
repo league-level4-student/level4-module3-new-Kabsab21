@@ -2,6 +2,9 @@ package _01_Spies_On_A_Train;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import _00_Intro_to_Linked_Lists.LinkedList;
 import _00_Intro_to_Linked_Lists.Node;
@@ -23,49 +26,69 @@ public class SpiesOnATrain {
      * statements.
      */
     String findIntel(LinkedList<TrainCar> train, String[] clues) {
+    	Stream.of(clues).forEach((clue)-> System.out.println(clue));
     	String spy = null;
     	ArrayList<CharSequence> names = new ArrayList<CharSequence>();
     	ArrayList<String> evidence = new ArrayList<String>();
     	HashMap<CharSequence, Integer> map = new HashMap<>();
-    
+    	String regex = "I saw (\\w*)";
+    	Pattern pattern = Pattern.compile(regex);
    
     	while( train.getHead().getNext() != null) {
-    		names.add(train.getHead().getValue().toString().subSequence(0, train.getHead().getValue().toString().length()));
+    	
+    		//names.add(train.getHead().getValue().toString().subSequence(0, train.getHead().getValue().toString().length()));
     
-    		CharSequence rest = train.getHead().getValue().questionPassenger().subSequence(37, train.getHead().getValue().questionPassenger().length());
+    		String rest = (String)(train.getHead().getValue().questionPassenger().subSequence(37, train.getHead().getValue().questionPassenger().length()));
     		evidence.add(rest.toString());
-    		System.out.println(rest);
+    	
+    		System.out.println("string: " + rest);
     		train.setHead(train.getHead().getNext());
     		
+    		Matcher matcher = pattern.matcher(rest);
+    		if(matcher.find()) {
+    			System.out.println(matcher.group(1));
+    			
+    		}
+    		
+    		names.add(matcher.group(1));
     	}
     	for( int n = 0; n < names.size(); n++) {
     		map.put(names.get(n), 0);
     		
     		}
     	for( int n = 0; n < evidence.size(); n++) {
-    		for( int i = 0; i < names.size(); i++) {
-    	    	if( evidence.get(n).contains(names.get(i))) {
+    		for( int i = 0; i < clues.length; i++) {
+    	    	if( evidence.get(n).contains(clues[i])) {
     	    	//	System.out.println(names.get(i));
-    	    		map.put(names.get(i), map.get(names.get(i))+1);
+    	    	
     	    //	System.out.println(map);
-    	    		
+    	    		for(CharSequence name : map.keySet()) {
+    	    	    	if( evidence.get(n).contains(name)) {
+    	    	    	
+    	    	    		map.put(name, map.get(name)+1);
+    	    	  
+    	    	    		
+    	    	    	}
+    	    		}
     	    	}
     		}
     		
     		
     	}
     	
-    	for(int i = 0; i < map.size(); i++) {
+    	int mostMentions = 0;
+    	for(CharSequence name : map.keySet()) {
     		
-    		map.get(names.get(i));
-    		System.out.println("name"+names.get(i)+" metnions"+map.get(names.get(i)));
-    		if( i != map.size()-1) {
-    		System.out.println("name next mentions"+names.get(i+1)+" "+map.get(names.get(i+1)));
-    		}
-    		if( map.get(names.get(i)) == 3) {
-    			spy = names.get(i).toString();
-    			System.out.println(names.get(i).toString());
-    			break;
+    		map.get(name );
+    		System.out.println("name "+name+" metnions "+map.get(name));
+//    		if(  != map.size()-1) {
+//    		System.out.println("name next mentions"+name+" "+map.get(name));
+//    		}
+    		if( map.get(name) > mostMentions ){
+    			spy = name.toString();
+    			mostMentions = map.get(name);
+    			System.out.println(name.toString());
+    			//break;
     		}
     	}
     
