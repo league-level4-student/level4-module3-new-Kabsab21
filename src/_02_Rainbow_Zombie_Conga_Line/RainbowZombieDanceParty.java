@@ -14,7 +14,7 @@ public class RainbowZombieDanceParty {
 
         ZombieHatColor[] hatColors = ZombieHatColor.values();
         ZombieAction[] zombieActions = ZombieAction.values();
-
+        
         Random rand = new Random();
 
         Scanner sc = new Scanner(System.in);
