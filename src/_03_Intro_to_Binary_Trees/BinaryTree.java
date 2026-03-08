@@ -121,7 +121,7 @@ public class BinaryTree<T extends Comparable<T>> {
 
             if ((current.getLeft() == null) || (current.getRight() == null)) {
                 Node<T> temp = null;
-                if (temp == current.getLeft())
+                if (null == current.getLeft())
                     temp = current.getRight();
                 else
                     temp = current.getLeft();
