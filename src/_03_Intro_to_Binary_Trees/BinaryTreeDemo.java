@@ -34,6 +34,28 @@ public class BinaryTreeDemo {
 
     public static void main(String[] args) {
 
+    	
+    	BinaryTree<String> tree = new BinaryTree<String>();
+    	
+    	tree.insert("YOWZA");
+    	   	
+    	Node<String> botswana = tree.getRoot();
+    	
+    	
+    	botswana.setLeft(new Node<String>("I DONT KNOW"));
+    	
+    	botswana.setRight(new Node<String>("ZOOWEEMAMA"));
+    	
+    	System.out.println("FULL TREE");
+    	tree.printHorizontal();
+    	
+    //	System.out.println(" ayyy "+tree.findSmallestNode(botswana).getValue()+" ayyy "+tree.getRoot().getValue()+" ayyy "+tree.recursiveSearch(botswana, "I DONT KNOW").getValue());
+    	
+    	tree.delete("YOWZA");
+    	
+    	System.out.println("NEW TREE");
+    	tree.printHorizontal();
+    	
     }
 
 }

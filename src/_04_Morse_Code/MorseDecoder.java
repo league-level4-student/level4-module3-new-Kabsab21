@@ -1,5 +1,7 @@
 package _04_Morse_Code;
 
+import java.util.ArrayList;
+
 import _03_Intro_to_Binary_Trees.BinaryTree;
 
 public class MorseDecoder {
@@ -65,6 +67,34 @@ public class MorseDecoder {
      */
     void decode() {
         String morseCode = "-.-- --- ..- .- .-. . .- -- .- --.. .. -. --.";
+        StringBuilder builder = new StringBuilder(morseCode);
+        ArrayList<MorseCode> arry = new ArrayList<MorseCode>();
+        String mrsString = morseCode;
+  
+        
+        
+        while( morseCode.length() > 0){
+        
+        	if(  morseCode.contains(" ") == true ) {
+        		int n = morseCode.indexOf(" ");
+        		arry.add( builder.substring(0, n) );
+        		morseCode = builder.delete(0, n+1).toString();
+        		//System.out.println(morseCode);
+    	
+        	}
+       
+        }
+        
+    	for( int i = 0; i < arry.size(); i++) {
+    		mcTree.search(arry.get(i));
+    	}
+        
+        
+        
+       
+        
+        
+        
     }
 
 }
