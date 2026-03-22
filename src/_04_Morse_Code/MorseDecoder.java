@@ -1,6 +1,7 @@
 package _04_Morse_Code;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import _03_Intro_to_Binary_Trees.BinaryTree;
 
@@ -9,11 +10,14 @@ public class MorseDecoder {
     BinaryTree<MorseCode> mcTree = new BinaryTree<MorseCode>();
 
     public static void main(String[] args) {
-
+    	Scanner obj = new Scanner(System.in);
+    	System.out.println("Enter your morsecode sentense");
+    	String m = obj.nextLine();
         MorseDecoder md = new MorseDecoder();
         md.initialize();
-        md.decode();
+        md.decode(m);
 
+        	obj.close();
     }
 
     public void initialize() {
@@ -65,36 +69,45 @@ public class MorseDecoder {
      * english alphabet.
      * 
      */
-    void decode() {
-        String morseCode = "-.-- --- ..- .- .-. . .- -- .- --.. .. -. --.";
+    String decode( String morseCode ) {
+     //   String morseCode = "-.-- --- ..- .- .-. . .- -- .- --.. .. -. --.";
         StringBuilder builder = new StringBuilder(morseCode);
         ArrayList<MorseCode> arry = new ArrayList<MorseCode>();
+        ArrayList<String> corr = new ArrayList<String>();
         String mrsString = morseCode;
-  
+        String Decoded = "";
         
         
-        while( morseCode.length() > 0){
+        while( morseCode.length() > 0 ){
         
         	if(  morseCode.contains(" ") == true ) {
         		int n = morseCode.indexOf(" ");
-        		arry.add( builder.substring(0, n) );
+        		
+        		arry.add( new MorseCode(builder.substring(0, n)) );
         		morseCode = builder.delete(0, n+1).toString();
-        		//System.out.println(morseCode);
-    	
+        		
+        
+        		
+        	} else if( morseCode.contains(" ") == false ) {
+        		
+        		arry.add( new MorseCode(builder.substring(0, morseCode.length())));
+        		morseCode = builder.delete(0, morseCode.length()).toString();
+        		
         	}
-       
+        	
+        
         }
         
     	for( int i = 0; i < arry.size(); i++) {
-    		mcTree.search(arry.get(i));
+    		String s = mcTree.search(arry.get(i)).getValue().toString();
+    		corr.add(s);
+    		Decoded = Decoded+s;
+    		System.out.println(Decoded);
+    		
     	}
         
-        
-        
-       
-        
-        
-        
+        return Decoded;
+          
     }
 
 }

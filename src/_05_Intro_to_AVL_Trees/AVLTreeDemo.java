@@ -1,6 +1,7 @@
 package _05_Intro_to_AVL_Trees;
 
 import _03_Intro_to_Binary_Trees.BinaryTree;
+import _03_Intro_to_Binary_Trees.Node;
 
 public class AVLTreeDemo {
 
@@ -31,7 +32,24 @@ public class AVLTreeDemo {
      */
 
     public static void main(String[] args) {
-
+    	BinaryTree<Integer> tr = new BinaryTree<Integer>();
+    	AVLTree<Integer> ee = new AVLTree<Integer>();
+    	
+    	tr.insert(5);
+    	Node<Integer> cowa = tr.getRoot();
+    	cowa.setLeft(new Node<Integer>(6));
+    	cowa.setRight(new Node<Integer>(7));
+    	
+    	ee.insert(5);
+    	Node<Integer> bunga = ee.getRoot();
+    	bunga.setLeft(new Node<Integer>(6));
+    	bunga.setRight(new Node<Integer>(7));
+    	
+    	System.out.println("Binary tree:");
+    	tr.printVertical();
+    	System.out.println("AVL tree:");
+    	ee.printVertical();
+    	
     }
 
 }
