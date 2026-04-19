@@ -40,15 +40,39 @@ public class AVLTreeDemo {
     	cowa.setLeft(new Node<Integer>(6));
     	cowa.setRight(new Node<Integer>(7));
     	
+    	cowa.getLeft().setLeft(new Node<Integer>(10));
     	ee.insert(5);
-    	Node<Integer> bunga = ee.getRoot();
-    	bunga.setLeft(new Node<Integer>(6));
-    	bunga.setRight(new Node<Integer>(7));
+    	
+    	AVLNode<Integer> bunga = ee.getRoot();
+    	bunga.setLeft(new AVLNode<Integer>(6));
+    	bunga.setRight(new AVLNode<Integer>(7));
+    	bunga.getLeft().setLeft(new AVLNode<Integer>(10));
+    
+    	System.out.println("Binary tree:");
+    	tr.printVertical();
+    	System.out.println("AVL tree:");
+    	ee.printVertical();
+    	
+    	ee.delete(5);
+    	tr.delete(5);
+    	
+    	System.out.println(" post delete ");
     	
     	System.out.println("Binary tree:");
     	tr.printVertical();
     	System.out.println("AVL tree:");
     	ee.printVertical();
+    	
+    	ee.delete(6);
+    	tr.delete(6);
+    	
+    	System.out.println(" post post delete ");
+    	
+    	System.out.println("Binary tree:");
+    	tr.printVertical();
+    	System.out.println("AVL tree:");
+    	ee.printVertical();
+    	
     	
     }
 

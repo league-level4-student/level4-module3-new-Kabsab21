@@ -9,6 +9,7 @@ public class Node<T> {
     
     public Node(T value) {
         this.value = value;
+        
     }
     
     public void setValue(T value) {

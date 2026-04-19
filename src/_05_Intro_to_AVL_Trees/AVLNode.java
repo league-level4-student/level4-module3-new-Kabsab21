@@ -15,6 +15,7 @@ public class AVLNode<T extends Comparable<T>> extends Node<T> {
     
     public void setLeft(AVLNode<T> left) {
         this.left = left;
+      
     }
     
     public void setRight(AVLNode<T> right) {
@@ -26,6 +27,7 @@ public class AVLNode<T extends Comparable<T>> extends Node<T> {
     }
     
     public AVLNode<T> getLeft() {
+    	
         return this.left;
     }
     

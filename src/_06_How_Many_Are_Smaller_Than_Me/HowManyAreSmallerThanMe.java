@@ -15,9 +15,32 @@ public class HowManyAreSmallerThanMe {
      */
 
     public int howManyAreSmallerThanMe(AVLTree<Integer> avlTree, int me) {
-
-        return 0;
+    	int smaller = 0;
+    	System.out.println(me);
+    	avlTree.printVertical();
+    	
+    	alltoleftof(smaller, avlTree, me);
+    	
+    	System.out.println("smaller nums "+smaller);	
+        return smaller;
 
     }
+    
+    int alltoleftof(int smaller, AVLTree<Integer> avlTree, int me) {
+    	AVLNode<Integer> n = avlTree.search(me).getLeft();
+    	if( n != null) {
+    		smaller = smaller + 1;
+    	}
+    	while(n != null ) {
+    		n = n.getLeft();
+    		System.out.println(n);
+    		smaller = smaller +1;
+    	}
+    	return smaller;
+    }
+    
+   
+    	
+    
 
 }
