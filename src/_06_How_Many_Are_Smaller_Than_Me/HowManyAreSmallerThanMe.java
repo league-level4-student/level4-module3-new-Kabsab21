@@ -19,26 +19,75 @@ public class HowManyAreSmallerThanMe {
     	System.out.println(me);
     	avlTree.printVertical();
     	
-    	alltoleftof(smaller, avlTree, me);
+    	int r = alltoleftof(smaller, avlTree, me);	
+    	int ar = getsmaller( avlTree, me);
+    	smaller = r + ar;
     	
-    	System.out.println("smaller nums "+smaller);	
+    	 
+    	System.out.println("smaller children "+r);	
+    	System.out.println("smaller probably not chudren"+ar);	
+    
         return smaller;
 
     }
     
     int alltoleftof(int smaller, AVLTree<Integer> avlTree, int me) {
     	AVLNode<Integer> n = avlTree.search(me).getLeft();
-    	if( n != null) {
-    		smaller = smaller + 1;
-    	}
+    	
     	while(n != null ) {
     		n = n.getLeft();
-    		System.out.println(n);
+    	
     		smaller = smaller +1;
     	}
     	return smaller;
     }
     
+    int getsmaller( AVLTree<Integer> avlTree, int me) {
+    	AVLNode<Integer> n = avlTree.getRoot();
+    	AVLNode<Integer> m = avlTree.getRoot();
+    	int ar = 0;
+    	
+    	while(n != null ) {
+    		System.out.println("jajajajja "+n.getValue());
+    		
+    		if( n.getValue() < me) {
+    			ar= ar+1;
+    			System.out.println("ar added 1");
+    			if( n.getRight() != null && n.getRight().getValue() < me ) {
+    				ar = ar+1;
+    				System.out.println("ar added 2");
+    			}
+    		}
+    		
+    		n = n.getLeft();
+
+    	}
+    	
+    	while(m != null ) {
+    		System.out.println("jajajajja r"+m.getValue());
+    		
+    		if( m.getValue() < me && m != avlTree.getRoot()) {
+    			ar= ar+1;
+    			System.out.println("ar added 1");
+    			
+    			if(  m.getLeft() != null && m.getLeft().getValue() < me && m != avlTree.getRoot()) {
+    				ar = ar+1;
+    				System.out.println("ar added 2");
+    			}
+    			
+    		}
+    		
+    		
+    		
+    		m = m.getRight();
+
+    	}
+    	
+    	
+    	return ar ;
+    }
+    
+   
    
     	
     
